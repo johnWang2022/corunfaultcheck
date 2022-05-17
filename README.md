@@ -19,7 +19,7 @@ sudo firewall-cmd --zone=public --add-port=3306/tcp --permanent
 
 use the eqmx client to push the data to topic  such as testtopic/#
 
-
+based on the maven 3.8 and jdk 8
 
 
 

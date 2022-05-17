@@ -1,0 +1,21 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    url: jdbc:mysql://corun.fault.com:3306/corundb?useSSL=false
+    username: root
+    password: corundb
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+emqx-config:
+  sub-topic: testtopic/#
+  pub-topic: corunfaultcheck/1
+  broke: tcp://corun.fault.com:1883
+  username: admin
+  password: public
+  client-id: 650bb210-9b53-4187
+  qos: 2
+  keepLive: 10000

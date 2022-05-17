@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.corun.faultcheck.fault.check.dao.FaultImagesDao">
+  <resultMap id="BaseResultMap" type="com.corun.faultcheck.fault.check.model.FaultImages">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="sheet_id" jdbcType="VARCHAR" property="sheetId" />
+    <result column="original_url" jdbcType="VARCHAR" property="originalUrl" />
+    <result column="calcu_url" jdbcType="VARCHAR" property="calcuUrl" />
+    <result column="stop_id" jdbcType="VARCHAR" property="stopId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="is_delete" jdbcType="VARCHAR" property="isDelete" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, sheet_id, original_url, calcu_url, stop_id, create_time, is_delete
+  </sql>
+  <select id="selectByExample" parameterType="com.corun.faultcheck.fault.check.model.FaultImagesExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from fault_images
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fault_images
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from fault_images
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.corun.faultcheck.fault.check.model.FaultImagesExample">
+    delete from fault_images
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.corun.faultcheck.fault.check.model.FaultImages" useGeneratedKeys="true">
+    insert into fault_images (id, sheet_id, original_url, calcu_url,
+      stop_id, create_time, is_delete
+      )
+    values (#{id,jdbcType=VARCHAR}, #{sheetId,jdbcType=VARCHAR}, #{originalUrl,jdbcType=VARCHAR}, #{calcuUrl,jdbcType=VARCHAR},
+      #{stopId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.corun.faultcheck.fault.check.model.FaultImages" useGeneratedKeys="true">
+    insert into fault_images
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sheetId != null">
+        sheet_id,
+      </if>
+      <if test="originalUrl != null">
+        original_url,
+      </if>
+      <if test="calcuUrl != null">
+        calcu_url,
+      </if>
+      <if test="stopId != null">
+        stop_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sheetId != null">
+        #{sheetId,jdbcType=VARCHAR},
+      </if>
+      <if test="originalUrl != null">
+        #{originalUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="calcuUrl != null">
+        #{calcuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="stopId != null">
+        #{stopId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.corun.faultcheck.fault.check.model.FaultImagesExample" resultType="java.lang.Long">
+    select count(*) from fault_images
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update fault_images
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sheetId != null">
+        sheet_id = #{record.sheetId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.originalUrl != null">
+        original_url = #{record.originalUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.calcuUrl != null">
+        calcu_url = #{record.calcuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stopId != null">
+        stop_id = #{record.stopId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isDelete != null">
+        is_delete = #{record.isDelete,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update fault_images
+    set id = #{record.id,jdbcType=VARCHAR},
+      sheet_id = #{record.sheetId,jdbcType=VARCHAR},
+      original_url = #{record.originalUrl,jdbcType=VARCHAR},
+      calcu_url = #{record.calcuUrl,jdbcType=VARCHAR},
+      stop_id = #{record.stopId,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      is_delete = #{record.isDelete,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.corun.faultcheck.fault.check.model.FaultImages">
+    update fault_images
+    <set>
+      <if test="sheetId != null">
+        sheet_id = #{sheetId,jdbcType=VARCHAR},
+      </if>
+      <if test="originalUrl != null">
+        original_url = #{originalUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="calcuUrl != null">
+        calcu_url = #{calcuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="stopId != null">
+        stop_id = #{stopId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.corun.faultcheck.fault.check.model.FaultImages">
+    update fault_images
+    set sheet_id = #{sheetId,jdbcType=VARCHAR},
+      original_url = #{originalUrl,jdbcType=VARCHAR},
+      calcu_url = #{calcuUrl,jdbcType=VARCHAR},
+      stop_id = #{stopId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

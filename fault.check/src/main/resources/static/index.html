@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Echo - Web Socket Sample</title>
+    <link href="css/styles.css" rel="stylesheet"/>
+    <link href="css/echo.css" rel="stylesheet"/>
+</head>
+<body>
+<noscript>
+    <h2 class="no-script">Seems your browser doesn't support Javascript! Websockets rely on Javascript being enabled.
+        Please enable
+        Javascript and reload this page!</h2>
+</noscript>
+<div>
+    <div id="connect-container" style="visibility:hidden;">
+        <div>
+            <input id="target" type="text" size="40" value="/echo"/>
+        </div>
+        <div>
+            <button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>
+        </div>
+        <div>
+            <textarea id="message">get message!</textarea>
+        </div>
+
+    </div>
+    <div id="console-container">
+        <div id="console"></div>
+    </div>
+</div>
+<script src="js/sockjs.min.js"></script>
+<script src="js/echo.js"></script>
+</body>
+</html>

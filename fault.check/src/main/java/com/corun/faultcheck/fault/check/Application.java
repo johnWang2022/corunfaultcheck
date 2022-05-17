@@ -19,7 +19,7 @@ public class Application{
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext run = SpringApplication.run(Application.class, args);
-		EmqxConfig bean = run.getBean(EmqxConfig.class);
-		System.out.println(bean.getBroke());
+//		EmqxConfig bean = run.getBean(EmqxConfig.class);
+//		System.out.println(bean.getBroke());
 	}
 }

@@ -2,7 +2,7 @@ server:
   port: 8081
 spring:
   datasource:
-    url: jdbc:mysql://corun.fault.com:3306/corundb?useSSL=false
+    url: jdbc:mysql://corun.fault.com:3306/corundb?useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: corundb
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -19,3 +19,9 @@ emqx-config:
   client-id: 650bb210-9b53-4187
   qos: 2
   keepLive: 10000
+logging:
+  level:
+    root: debug
+corun:
+  faultcheck:
+    oper: algorithm

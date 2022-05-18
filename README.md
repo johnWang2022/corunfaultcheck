@@ -15,7 +15,7 @@ docker run --restart always --ip 172.18.0.3 -p 1883:1883 -p 8081:8081 -p 8083:80
 open firewall 
 sudo firewall-cmd --zone=public --add-port=1883/tcp --permanent
 sudo firewall-cmd --zone=public --add-port=3306/tcp --permanent
-
+sudo firewall-cmd --reload
 
 use the eqmx client to push the data to topic  such as testtopic/#
 

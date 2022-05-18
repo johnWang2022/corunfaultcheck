@@ -25,9 +25,14 @@ public class EmqttMessageProcessor implements MqttCallback {
 
     @Override
     public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
-        log.info(" message arrived  {}", s);
-        handler.sendMessage(mqttMessage.toString());
-        this.createFaultManger.createFaultInfo(FaultListInfo.getFaultList(mqttMessage.toString()));
+        try {
+            log.info(" message arrived  {}", s);
+            handler.sendMessage(mqttMessage.toString());
+            this.createFaultManger.createFaultInfo(FaultListInfo.getFaultList(mqttMessage.toString()));
+        } catch (Exception e) {
+            log.error(" message arrived with error :",e.getMessage());
+        }
+
     }
 
     @Override
